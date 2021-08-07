@@ -1,0 +1,32 @@
+version: '3'
+services:
+    node:
+        build:
+            context: ./react/react-docker
+            dockerfile: Dockerfile
+        volumes:
+            - ./react/react-docker/:/usr/src/app  # ローカルとコンテナ内の同期
+        ports:
+            - "3000:3000"
+    db:
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: django-db
+            MYSQL_USER: django
+            MYSQL_PASSWORD: django
+            TZ: 'Asia/Tokyo'
+        command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./mysql/mysql_data:/var/lib/mysql
+    app:
+        build: ./python
+        command: python3 manage.py runserver 0.0.0.0:8000
+        volumes:
+            - ./python/python-project:/code   # ローカルとコンテナ内の同期
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db

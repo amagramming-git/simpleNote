@@ -1,0 +1,4 @@
+Django==3.2.5  # Django3.2.5
+djangorestframework  # djangoのrestAPI作成のためのFramework
+mysqlclient  # pythonでMySQLに接続するためのドライバ
+django-cors-headers # フロントエンドからAPIにアクセス可能なようにする。
