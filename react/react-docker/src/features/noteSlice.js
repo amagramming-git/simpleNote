@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const apiUrl = "http://localhost:8000/";
+const apiUrl = process.env.REACT_APP_REST_API_ENDPOINT;
 
 export const fetchAsyncGetMyNotes = createAsyncThunk(
     "mynotes/get",
     async () => {
-        const res = await axios.get(`${apiUrl}api/mynotes/`, {
+        const res = await axios.get(`${apiUrl}/api/mynotes/`, {
             headers: {
                 Authorization: `token ${localStorage.token}`,
             },
@@ -17,7 +17,7 @@ export const fetchAsyncGetMyNotes = createAsyncThunk(
 export const fetchAsyncCreateNote = createAsyncThunk(
     "note/post",
     async (note) => {
-        const res = await axios.post(`${apiUrl}api/notes/`, note, {
+        const res = await axios.post(`${apiUrl}/api/notes/`, note, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `token ${localStorage.token}`,
@@ -29,7 +29,7 @@ export const fetchAsyncCreateNote = createAsyncThunk(
 export const fetchAsyncUpdateNote = createAsyncThunk(
     "note/put",
     async (note) => {
-        const res = await axios.put(`${apiUrl}api/notes/${note.id}/`, note,
+        const res = await axios.put(`${apiUrl}/api/notes/${note.id}/`, note,
             {
                 headers: {
                     "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export const fetchAsyncUpdateNote = createAsyncThunk(
 export const fetchAsyncDeleteNote = createAsyncThunk(
     "note/delete",
     async (id) => {
-        const res = await axios.delete(`${apiUrl}api/notes/${id}/`, {
+        const res = await axios.delete(`${apiUrl}/api/notes/${id}/`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `token ${localStorage.token}`,

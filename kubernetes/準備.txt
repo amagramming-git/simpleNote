@@ -1,0 +1,10 @@
+1.ローカルでアプリの動作を確認する。
+
+当docker-comopse.yamlが存在しているディレクトリで以下のコマンドを実行すると、ローカルでアプリの動作を確認することができます。
+docker-compose build
+docker-compose up -d
+終了するときは以下のコマンドで終了することができます。
+docker-compose down
+
+2.minikubeで動作を確認する。
+

@@ -5,8 +5,6 @@ import './App.css';
 import Auth from './components/Auth';
 import MainPage from "./components/MainPage";
 
-
-
 function App() {
   return (
     <div className="App">

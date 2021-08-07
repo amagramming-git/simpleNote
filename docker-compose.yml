@@ -8,6 +8,8 @@ services:
             - ./react/react-docker/:/usr/src/app  # ローカルとコンテナ内の同期
         ports:
             - "3000:3000"
+        environment:
+            REACT_APP_REST_API_ENDPOINT: "http://app:8000"
     db:
         image: mysql:5.7
         environment:
