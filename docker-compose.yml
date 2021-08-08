@@ -9,7 +9,7 @@ services:
         ports:
             - "3000:3000"
         environment:
-            REACT_APP_REST_API_ENDPOINT: "http://app:8000"
+            REACT_APP_REST_API_ENDPOINT: "http://127.0.0.1:8000"
     db:
         image: mysql:5.7
         environment:
@@ -30,5 +30,29 @@ services:
             - ./python/python-project:/code   # ローカルとコンテナ内の同期
         ports:
             - "8000:8000"
+        environment:
+            SECRET_KEY: "django-insecure-g@ww%@j*fj+*p8se@*e9iqs9nnci0&5s)9e5)3^2ajoc^47hvu"
+            DEBUG: 1
+            DATABASE_ENGINE: django.db.backends.mysql
+            DATABASE_DB: django-db
+            DATABASE_USER: django
+            DATABASE_PASSWORD: django
+            DATABASE_HOST: db
+            DATABASE_PORT: "3306"
         depends_on:
             - db
+
+# docker-composeでの新規作成の際の手順
+# docker や docker-compose をインストールします。
+# docker-compose.ymlファイルがあるところにターミナルで移動する
+# 以下のコマンドを2つ実行する
+# docker-compose build
+# docker-compose up -d
+# ここまででdockerのイメージができたので、次にpythonのサーバーに入ってmigrateをする
+# docker-compose exec app bash
+# python manage.py migrate
+# exit
+# 以下のURLでアクセスすると、アプリが使用できる。
+# http://localhost:3000/
+# サーバーを停止する場合には以下のコマンドを実行する
+# docker-compose down
