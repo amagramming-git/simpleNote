@@ -4,6 +4,8 @@ ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 RUN mkdir /code
 WORKDIR /code
+
+# requirements.txtでインストールする方法トPipfileでインストールする方法の二通りがある。
 # ADD requirements.txt /code/
 # RUN pip install --upgrade pip && pip install -r requirements.txt
 

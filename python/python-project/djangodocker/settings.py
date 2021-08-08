@@ -32,8 +32,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # 環境変数からDEBUGを取得。デフォルトはTrue（本番環境モード）
 DEBUG = int(os.environ.get('DEBUG', default=0))
 
-ALLOWED_HOSTS = []
-
+# ALLOWED_HOSTS = []
+# TODO あまり良くないが、とりあえず全部許可しておく。どこかの機会に修正する予定
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 

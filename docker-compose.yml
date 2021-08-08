@@ -25,14 +25,15 @@ services:
             - ./mysql/mysql_data:/var/lib/mysql
     app:
         build: ./python
-        command: python3 manage.py runserver 0.0.0.0:8000
+        # --insecureオプションはDEBUGがFalseでもCSSを読み込むためのオプション
+        command: python3 manage.py runserver 0.0.0.0:8000 --insecure
         volumes:
             - ./python/python-project:/code   # ローカルとコンテナ内の同期
         ports:
             - "8000:8000"
         environment:
             SECRET_KEY: "django-insecure-g@ww%@j*fj+*p8se@*e9iqs9nnci0&5s)9e5)3^2ajoc^47hvu"
-            DEBUG: 1
+            DEBUG: 0
             DATABASE_ENGINE: django.db.backends.mysql
             DATABASE_DB: django-db
             DATABASE_USER: django
