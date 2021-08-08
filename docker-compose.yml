@@ -8,16 +8,12 @@ services:
             - ./react/react-docker/:/usr/src/app  # ローカルとコンテナ内の同期
         ports:
             - "3000:3000"
-        environment:
-            REACT_APP_REST_API_ENDPOINT: "http://127.0.0.1:8000"
+        env_file:
+            - ./react/.env
     db:
         image: mysql:5.7
-        environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: django-db
-            MYSQL_USER: django
-            MYSQL_PASSWORD: django
-            TZ: 'Asia/Tokyo'
+        env_file:
+            - ./mysql/.env
         command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
         ports:
             - "3306:3306"
@@ -31,15 +27,8 @@ services:
             - ./python/python-project:/code   # ローカルとコンテナ内の同期
         ports:
             - "8000:8000"
-        environment:
-            SECRET_KEY: "django-insecure-g@ww%@j*fj+*p8se@*e9iqs9nnci0&5s)9e5)3^2ajoc^47hvu"
-            DEBUG: 0
-            DATABASE_ENGINE: django.db.backends.mysql
-            DATABASE_DB: django-db
-            DATABASE_USER: django
-            DATABASE_PASSWORD: django
-            DATABASE_HOST: db
-            DATABASE_PORT: "3306"
+        env_file:
+            - ./python/.env
         depends_on:
             - db
 
