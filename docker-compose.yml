@@ -22,7 +22,7 @@ services:
     app:
         build: ./python
         # --insecureオプションはDEBUGがFalseでもCSSを読み込むためのオプション
-        command: python3 manage.py runserver 0.0.0.0:8000 --insecure
+        # command: python3 manage.py runserver 0.0.0.0:8000 --insecure
         volumes:
             - ./python/python-project:/code   # ローカルとコンテナ内の同期
         ports:
