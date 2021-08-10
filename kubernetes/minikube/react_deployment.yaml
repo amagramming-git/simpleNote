@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: react
+  name: react
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: react
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: react
+    spec:
+      containers:
+        - image: kambe/minikubereact:1.0
+          name: react
+          resources: {}
+status: {}
