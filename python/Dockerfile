@@ -17,4 +17,4 @@ COPY ./python-project/Pipfile /code/Pipfile
 RUN pipenv install --skip-lock --system --dev
 ADD ./python-project /code/
 
-CMD [ "python3", "manage.py", "runserver", "0.0.0.0:8000", "--insecure" ]
+# CMD [ "python3", "manage.py", "runserver", "0.0.0.0:8000", "--insecure" ]
