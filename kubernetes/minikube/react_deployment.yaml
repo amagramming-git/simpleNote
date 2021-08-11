@@ -18,7 +18,12 @@ spec:
         run: react
     spec:
       containers:
-        - image: kambe/minikubereact:1.0
+        - env:
+            - name: REACT_APP_REST_API_ENDPOINT
+              value: "http://192.168.99.103" # Ingressで作成されたIPアドレスを入力
+          image: kambe/minikubereact:1.0
           name: react
+          ports:
+            - containerPort: 3000
           resources: {}
 status: {}

@@ -30,30 +30,22 @@ spec:
             - name: MYSQL_DATABASE
               valueFrom:
                 configMapKeyRef:
-                  # ConfigMapの名前を指定
                   name: my-config
-                  # ConfigMapのKeyを指定
                   key: DATABASE_DB
             - name: MYSQL_USER
               valueFrom:
                 configMapKeyRef:
-                  # ConfigMapの名前を指定
                   name: my-config
-                  # ConfigMapのKeyを指定
                   key: DATABASE_USER
             - name: MYSQL_PASSWORD
               valueFrom:
                 configMapKeyRef:
-                  # ConfigMapの名前を指定
                   name: my-config
-                  # ConfigMapのKeyを指定
                   key: DATABASE_PASSWORD
             - name: TZ
               valueFrom:
                 configMapKeyRef:
-                  # ConfigMapの名前を指定
                   name: my-config
-                  # ConfigMapのKeyを指定
                   key: TZ
           image: mysql:5.7
           name: db

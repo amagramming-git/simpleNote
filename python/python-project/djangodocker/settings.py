@@ -61,9 +61,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+# 動作確認でCORSを全許可する場合
+# CORS_ALLOW_ALL_ORIGINS = True 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
+    os.environ.get('CORS_ORIGIN_WHITELIST_ELEMENT'),
 ]
 
 ROOT_URLCONF = 'djangodocker.urls'
