@@ -6,7 +6,7 @@ data:
   DATABASE_DB: "django-db"
   DATABASE_USER: "django"
   DATABASE_PASSWORD: "django"
-  DATABASE_HOST: "db-clusterip"
+  DATABASE_HOST: "mysql-clusterip"
   DATABASE_PORT: "3306"
   MYSQL_ROOT_PASSWORD: "root"
   TZ: "Asia/Tokyo"
