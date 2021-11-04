@@ -1,2 +1,3 @@
 mysql/mysql_data/
-kubernetes/kubernetes-kanzen-nyumon-material/
+kubernetes/01_kubernetes-kanzen-nyumon-material/
+kubernetes/02_aws-eks-kubernetes-handson-material-jp
