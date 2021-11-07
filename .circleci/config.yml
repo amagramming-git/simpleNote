@@ -18,9 +18,13 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!"
       - run:
+          name: "yarn start"
+          command: "yarn start"
+          working_directory: ~/react/react-docker
+      - run:
           name: "ls -a"
           command: "ls -a"
-
+          working_directory: ~/react/react-docker
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
