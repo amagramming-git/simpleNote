@@ -21,6 +21,7 @@ jobs:
       - run:
           name: "ls -a"
           command: "ls -a"
+          working_directory: ~/react/react-docker
       - run:
           name: "pwd"
           command: "pwd"
