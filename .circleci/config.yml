@@ -12,14 +12,14 @@ jobs:
       - image: circleci/node # cimg/base:stable
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    working_directory: ~/react/react-docker
+    working_directory: ~/working_directory
     steps:
       - checkout
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
       - run:
-          working_directory: ~/react/react-docker
+          working_directory: react/react-docker
           name: "ls -a"
           command: "ls -a"
       - run:
