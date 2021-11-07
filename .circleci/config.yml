@@ -24,10 +24,6 @@ jobs:
           command: "ls -a"
       - run:
           working_directory: react/react-docker
-          name: "yarn start"
-          command: "yarn start"
-      - run:
-          working_directory: react/react-docker
           name: "npm test"
           command: "npm test"
 # Invoke jobs via workflows
