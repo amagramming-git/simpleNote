@@ -1,17 +1,8 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   build:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
       - image: circleci/node # cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     working_directory: ~/working_directory
     steps:
       - checkout
@@ -20,15 +11,40 @@ jobs:
           command: "echo Hello, World!"
       - run:
           working_directory: react/react-docker
-          name: "ls -a"
-          command: "ls -a"
+          command: yarn install
       - run:
           working_directory: react/react-docker
-          name: "npm test"
-          command: "npm test"
+          command: yarn build
+      - run:
+          working_directory: react/react-docker
+          command: yarn start
+      - run:
+          working_directory: react/react-docker
+          command: npm test
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
       - build # say-hello
+# orbs:
+#   node: circleci/node@4.2.1
+
+# version: 2.1
+
+# jobs:
+#   build:
+#     docker:
+#       - image: docker
+#     steps:
+#       - setup_remote_docker:
+#           docker_layer_caching: true
+#       - run: docker image ls
+#       - run: docker volume ls
+#       - run: docker run --mount source=datastore,destination=/mnt/volume debian:bullseye-slim dd if=/dev/zero of=/mnt/volume/zero bs=32M count=32
+#       - run: docker volume ls
+
+# workflows:
+#   app-tests:
+#     jobs:
+#       - build
