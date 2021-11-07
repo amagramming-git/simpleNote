@@ -20,7 +20,10 @@ spec:
       containers:
         - env:
             - name: REACT_APP_REST_API_ENDPOINT
-              value: "http://ac70d29f79bdf45bc9a43c7ffb51a22d-306167179.ap-northeast-1.elb.amazonaws.com" # Ingressで作成されたIPアドレスを入力
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: REACT_APP_REST_API_ENDPOINT
           image: kambe/minikubereact:1.0
           name: react
           ports:

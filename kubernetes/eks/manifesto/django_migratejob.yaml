@@ -1,21 +1,9 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
-  creationTimestamp: null
-  labels:
-    run: django
-  name: django
+  name: django-migratejob
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      run: django
-  strategy: {}
   template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        run: django
     spec:
       containers:
         - env:
@@ -60,12 +48,13 @@ spec:
                   name: my-config
                   key: DATABASE_PORT
             - name: CORS_ORIGIN_WHITELIST_ELEMENT
-              value: "http://ac70d29f79bdf45bc9a43c7ffb51a22d-306167179.ap-northeast-1.elb.amazonaws.com" # IngressのIPを設定する
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: CORS_ORIGIN_WHITELIST_ELEMENT
           image: kambe/minikubedjango:1.1
-          name: django
-          ports:
-            - containerPort: 8000
-          resources: {}
-          command:
-            ["python3", "manage.py", "runserver", "0.0.0.0:8000", "--insecure"]
+          name: django-migratejob
+          command: ["python", "manage.py", "migrate"]
+      restartPolicy: Never
+  completions: 1
 status: {}
