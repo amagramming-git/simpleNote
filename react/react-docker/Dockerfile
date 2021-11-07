@@ -18,7 +18,9 @@ RUN yarn install && npm install axios \
     # iconをページ内で使用するため https://react-icons.github.io/react-icons/
     && npm install react-icons --save \
     # ページの大きさに応じた表示をするために使用 https://material-ui.com/ja/components/use-media-query/
-    && npm install @material-ui/core
+    && npm install @material-ui/core \
+    # テストを行うため
+    && npm install msw
 
 # ファイルを全部作業用ディレクトリにコピー
 COPY . .
